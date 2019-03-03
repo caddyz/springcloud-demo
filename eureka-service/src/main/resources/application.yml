@@ -1,0 +1,41 @@
+---
+server:
+  port: 8100
+spring:
+  profiles: peer1
+  application:
+    name: eureka-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer2:8101/eureka/,http://peer3:8102/eureka/
+  instance:
+    hostname: peer1
+
+---
+spring:
+  application:
+    name: eureka-service
+  profiles: peer2
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    service-url:
+      defaultZone: http://peer1:8100/eureka/,http://peer3:8102/eureka/
+server:
+  port: 8101
+
+---
+server:
+  port: 8102
+spring:
+  profiles: peer3
+  application:
+    name: eureka-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer2:8101/eureka/,http://peer1:8100/eureka/
+  instance:
+    hostname: peer3
