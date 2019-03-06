@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Date 2019/3/3 15:36
  * @Version 1.0
  **/
-@FeignClient("eureka-provider")
+@FeignClient(name = "eureka-provider")
 public interface HomeClient {
     /**
      * 实现spring cloud 消费
